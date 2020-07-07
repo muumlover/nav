@@ -1,0 +1,24 @@
+{
+  "title": "网站入口引导页",
+  "name": "请选择要访问的网站",
+  "groups": {
+    "group1": {
+      "name": "group1",
+      "icon": "",
+      "types": {
+        "常用网址": {
+          "name": "常用网址",
+          "icon": "",
+          "links": {
+            "link1": {
+              "name": "link1",
+              "icon": "",
+              "direct": "http://link1/",
+              "domain": "http://link1/"
+            }
+          }
+        }
+      }
+    }
+  }
+}

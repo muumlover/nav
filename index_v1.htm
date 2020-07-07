@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- saved from url=(0024)http://www.sge-tech.com/ -->
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>网站入口引导页</title>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1;
+            margin: 0;
+            min-width: 960px;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        #section {
+            position: relative;
+            height: 571px;
+            top: 50%;
+            margin-top: -285px;
+            padding: 0;
+        }
+
+        #section > div {
+            margin: 0 auto;
+            padding: 165px 0 0;
+            width: 960px;
+        }
+
+        #section div div {
+            height: 161px;
+            margin: 0 0 0 240px;
+            padding: 33px 22px 33px 18px;
+            width: 411px;
+            text-align: center;
+        }
+
+        #section div div h1 {
+            color: #ccac00;
+            font-size: 30px;
+            font-weight: normal;
+            letter-spacing: 3px;
+            margin: 0;
+            padding: 0;
+            text-transform: uppercase;
+        }
+
+        #section div div p {
+            color: #ccac00;
+            font-size: 16px;
+            line-height: 36px;
+            margin: 20px;
+            padding: 0;
+            text-align: center;
+            border: 1px dashed rgba(181, 176, 176, 0.3);
+        }
+
+        #section div div p:hover {
+            background-color: #dddcdc;
+        }
+
+        #section div div p a {
+            color: #ccac00;
+        }
+
+        #section div div p a:hover {
+            color: #337ab7;
+        }
+
+        [v-cloak] {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="section">
+    <div v-cloak>
+        <div>
+            <h1>{{ message }}</h1>
+            <p v-for="link in links">
+                <a :href="link[source]" style="text-decoration:none;" target="_blank"><b>{{link.name}}</b></a>
+            </p>
+        </div>
+    </div>
+</div>
+<script src="assets/js/vue.js"></script>
+<script>
+    vm = new Vue({
+        el: '#section',
+        data: {
+            message: '',
+            links: [],
+            source: 'direct'
+        },
+        created() {
+            fetch('data/nav.json')
+                .then((response) => {
+                    return response.json();
+                })
+                .then((navJson) => {
+                    this.message = navJson.name
+                    this.links = navJson.groups['sge'].types['常用网址'].links;
+                })
+        },
+    })
+</script>
+</body>
+</html>
